@@ -7,21 +7,31 @@ Connect4GameState gS;
 Connect4Player r;
 Connect4Player y;
 Connect4ConsoleDisplay consoleDisplay;
+/**
+ * @param gameState A given initial gamestate.
+ * @param red A Connect4 player to be the first player.
+ * @param yellow A Connect4 player to be the second player.
+ * @param display A display interface for the game.
+ */
 public Connect4(Connect4GameState gameState, Connect4Player red, Connect4Player yellow, Connect4ConsoleDisplay display) {
-        // TODO Auto-generated constructor stub
         gS = gameState;
         r = red;
         y = yellow;
         consoleDisplay = display;
 }
 
+/** Initialises the main loop of the game.
+ * 
+ */
 public void play() {
         // TODO Auto-generated method stub
         do {
                 consoleDisplay.displayBoard();
                 r.makeMove(gS);
+                gS.getWinner();
                 consoleDisplay.displayBoard();
                 y.makeMove(gS);
+                gS.getWinner();
         } while (!gS.gameOver());
         consoleDisplay.displayBoard();
         System.out.print("The winner is...");

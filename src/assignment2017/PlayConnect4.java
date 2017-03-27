@@ -2,6 +2,11 @@ package assignment2017;
 import assignment2017.codeprovided.Connect4GameState;
 import assignment2017.codeprovided.Connect4Player;
 
+/** Initialiser for a test game of Connect 4 versus an opponent that
+ ** makes its moves at random.
+ * @author Simon Fish
+ *
+ */
 public class PlayConnect4 {
 public static void main(String[] args) {
         Connect4GameState gameState = new MyGameState();

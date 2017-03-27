@@ -5,6 +5,11 @@ import assignment2017.codeprovided.ColumnFullException;
 import assignment2017.codeprovided.IllegalColumnException;
 import assignment2017.codeprovided.IllegalRowException;
 
+/** An implementation of the Connect4GameState abstract class.
+ ** Provides standard functions for making moves and checking the board state. 
+ * @author Simon Fish
+ * @see assignment2017.codeprovided.Connect4GameState
+ */
 public class MyGameState extends Connect4GameState {
 
 protected int currentTurn = RED;
@@ -18,9 +23,11 @@ public MyGameState(int[][] newBoard, int whoseTurn) {
     currentTurn = whoseTurn;
 }
 
+/* Initialises an empty board.
+ * @see assignment2017.codeprovided.Connect4GameState#startGame()
+ */
 @Override
 public void startGame() {
-        // Initialise empty board
         for (int i=0; i<NUM_ROWS; i++) {
                 for (int j=0; j<NUM_COLS; j++) {
                         board[i][j] = EMPTY;
@@ -29,6 +36,10 @@ public void startGame() {
         currentTurn = RED;
 }
 
+/* Makes a move for the player whose turn it is, based on their prior input.
+ * Is also able to handle exceptions created due to misinputs.
+ * @see assignment2017.codeprovided.Connect4GameState#move(int)
+ */
 @Override
 public void move(int col) throws ColumnFullException, IllegalColumnException {
         // If column out of range, throw exception
@@ -47,11 +58,17 @@ public void move(int col) throws ColumnFullException, IllegalColumnException {
         changeTurn();
 }
 
+/* Returns an integer value relating to whose turn it is - 0 for red, 1 for yellow.
+ * @see assignment2017.codeprovided.Connect4GameState#whoseTurn()
+ */
 @Override
 public int whoseTurn() {
         return currentTurn;
 }
 
+/** Method passed after a turn has successfully been taken to change hands.
+ * There's probably a more codegolf-flavoured method to this, but I'm fine with a par.
+ */
 private void changeTurn() {
         switch (currentTurn) {
         case RED:
@@ -63,15 +80,20 @@ private void changeTurn() {
         }
 }
 
+/* Returns the counter at a given location.
+ * @see assignment2017.codeprovided.Connect4GameState#getCounterAt(int, int)
+ */
 @Override
 public int getCounterAt(int col, int row) throws IllegalColumnException, IllegalRowException {
         // Gets the value of the counter at the given location
         return board[row][col];
 }
 
+/* Checks if the entire board is full.
+ * @see assignment2017.codeprovided.Connect4GameState#isBoardFull()
+ */
 @Override
 public boolean isBoardFull() {
-        // Checks if board is full per column
         for (int col=0; col<NUM_COLS; col++) {
                 if (!isColumnFull(col)) {
                         return false;
@@ -80,6 +102,9 @@ public boolean isBoardFull() {
         return true;
 }
 
+/* Checks if a single column is full. Remembers this if it is true.
+ * @see assignment2017.codeprovided.Connect4GameState#isColumnFull(int)
+ */
 @Override
 public boolean isColumnFull(int col) throws IllegalColumnException {
         // Checks if given column is full either from memory or by looping
@@ -100,6 +125,9 @@ public boolean isColumnFull(int col) throws IllegalColumnException {
         return columnsFull[col];
 }
 
+/* Does all necessary checks to find out who the winner is, and returns the EMPTY value (-1) otherwise.
+ * @see assignment2017.codeprovided.Connect4GameState#getWinner()
+ */
 @Override public int getWinner() {
         Integer current, previous;
         current = previous = null;
@@ -167,25 +195,25 @@ public boolean isColumnFull(int col) throws IllegalColumnException {
                     previous = current;
                 }
         }
-
-        if (isBoardFull()) {
-                return -1;
-        }
         
         }
         return EMPTY;
 }
 
+/* Decides whether the game is now over based on the board state.
+ * @see assignment2017.codeprovided.Connect4GameState#gameOver()
+ */
 @Override public boolean gameOver() {
-        // Decides whether the game is now over based on the board state
         if (getWinner() != -1 || isBoardFull()) {
                 return true;
         }
         return false;
 }
 
+/* Creates a deep copy of the board state.
+ * @see assignment2017.codeprovided.Connect4GameState#copy()
+ */
 @Override public Connect4GameState copy() {
-        // TODO Auto-generated method stub
         int[][] newBoard = new int[NUM_ROWS][NUM_COLS];
         for (int i = 0; i<NUM_ROWS; i++) {
                 newBoard[i] = board[i].clone();

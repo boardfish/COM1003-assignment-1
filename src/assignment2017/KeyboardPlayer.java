@@ -12,13 +12,13 @@ import assignment2017.codeprovided.Connect4GameState;
 public class KeyboardPlayer extends Connect4Player {
 Scanner cmd = new Scanner(System.in);
 
-public KeyboardPlayer() {
-        // TODO Auto-generated constructor stub
-}
+public KeyboardPlayer() {}
 
+/* Allows the user to make a move by way of terminal input.
+ * @see assignment2017.codeprovided.Connect4Player#makeMove(assignment2017.codeprovided.Connect4GameState)
+ */
 @Override
 public void makeMove(Connect4GameState gameState) {
-        // TODO Auto-generated method stub
         boolean moveExecuted = false;
         do {
                 System.out.print("Which column will you choose? [0-7]:"); //const

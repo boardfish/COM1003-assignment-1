@@ -9,13 +9,19 @@ import assignment2017.codeprovided.Connect4Player;
 import assignment2017.codeprovided.IllegalColumnException;
 
 
+/** RandomPlayer - a Connect 4 Player that chooses at random as opposed to using a given algorithm.
+ * @author Simon Fish
+ *
+ */
 public class RandomPlayer extends Connect4Player {
+    
     Scanner cmd = new Scanner(System.in);
 
-    public RandomPlayer() {
-        // TODO Auto-generated constructor stub
-    }
+    public RandomPlayer() {}
 
+    /* Makes a move through the use of RNG.
+     * @see assignment2017.codeprovided.Connect4Player#makeMove(assignment2017.codeprovided.Connect4GameState)
+     */
     @Override
     public void makeMove(Connect4GameState gameState) {
         // TODO Auto-generated method stub
@@ -23,7 +29,7 @@ public class RandomPlayer extends Connect4Player {
         boolean moveExecuted = false;
         int col;
         do {
-            col = ThreadLocalRandom.current().nextInt(0, 7 + 1);
+            col = ThreadLocalRandom.current().nextInt(0, gameState.NUM_COLS + 1);
             try {
                 gameState.move(col);
                 moveExecuted = true;
