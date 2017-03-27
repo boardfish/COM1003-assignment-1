@@ -2,6 +2,11 @@ package assignment2017;
 
 import java.util.Scanner;
 
+import assignment2017.codeprovided.Connect4Player;
+import assignment2017.codeprovided.IllegalColumnException;
+import assignment2017.codeprovided.ColumnFullException;
+import assignment2017.codeprovided.Connect4GameState;
+
 
 
 public class KeyboardPlayer extends Connect4Player {

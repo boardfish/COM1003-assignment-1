@@ -1,5 +1,7 @@
 package assignment2017;
 
+import assignment2017.codeprovided.Connect4Displayable;
+import assignment2017.codeprovided.Connect4GameState;
 
 public class Connect4ConsoleDisplay implements Connect4Displayable {
 protected Connect4GameState gS;
