@@ -7,11 +7,16 @@ public class MyGameState extends Connect4GameState {
     protected int currentTurn = RED;
     protected int[][] board = new int[NUM_ROWS][NUM_COLS];
     protected boolean[] columnsFull = new boolean[NUM_COLS];
-
+    
     public MyGameState() {
-        // TODO Auto-generated constructor stub
+        
     }
-
+    
+    public MyGameState(int[][] bd, int cT) {
+        board = bd;
+        currentTurn = cT;
+    }
+    
     @Override
     public void startGame() {
         // Initialise empty board
@@ -120,7 +125,7 @@ public class MyGameState extends Connect4GameState {
         for (int col=0; col < NUM_COLS; col++) {
             for (int row=0; row <= NUM_ROWS - NUM_IN_A_ROW_TO_WIN; row++) {
                 previous = getCounterAt(col, row);
-                for (int i=row; i<row+4; i++) {
+                for (int i=row; i<row + NUM_IN_A_ROW_TO_WIN; i++) {
                     current = getCounterAt(col, i);
                     if (previous!=current) {
                         break;
@@ -132,22 +137,39 @@ public class MyGameState extends Connect4GameState {
                 }
             }
         }
-        // Backslash check
-        for (int row=0; row < NUM_ROWS; row++) {
-            for (int col=0; col < NUM_COLS - 1 - NUM_IN_A_ROW_TO_WIN; col++) {
+        // Forward slash check
+        for (int row=0; row < NUM_ROWS - NUM_IN_A_ROW_TO_WIN; row++) {
+            for (int col=0; col < NUM_COLS - NUM_IN_A_ROW_TO_WIN; col++) {
                 previous = getCounterAt(col, row);
-                for (int i=col; i<col+4; i++) {
-                    current = getCounterAt(i, row);
+                for (int y=col, x=row; x < row + NUM_IN_A_ROW_TO_WIN || y < col + NUM_IN_A_ROW_TO_WIN; y++, x++) {
+                    current = getCounterAt(y, x);
                     if (previous!=current) {
                         break;
                     }
-                    if (i == col + 3 && current != EMPTY) { //if it's the last iteration and they're still the same...
+                    if (y == col + 3 && current != EMPTY) { //if it's the last iteration and they're still the same...
                         return current; //...then that's the winner.
                     }
                     previous = current;
                 }
             }
         }
+     // Backward slash check
+        for (int row=0; row <= NUM_ROWS - NUM_IN_A_ROW_TO_WIN; row++) {
+            for (int col=0; col <= NUM_COLS - NUM_IN_A_ROW_TO_WIN; col++) {
+                previous = getCounterAt(col, row+NUM_IN_A_ROW_TO_WIN - 1);
+                for (int y=col,  x=row + NUM_IN_A_ROW_TO_WIN - 1; x >= row|| y < col + NUM_IN_A_ROW_TO_WIN ; y++, x--) {
+                    current = getCounterAt(y, x);
+                    if (previous!=current) {
+                        break;
+                    }
+                    if (y == col + 3 && current != EMPTY) { //if it's the last iteration and they're still the same...
+                        return current; //...then that's the winner.
+                    }
+                    previous = current;
+                }
+            }
+        }
+        
         if (isBoardFull()) {
             return -1;
         }
@@ -166,6 +188,10 @@ public class MyGameState extends Connect4GameState {
     @Override
     public Connect4GameState copy() {
         // TODO Auto-generated method stub
-        return this;
+        int[][] newBoard = new int[NUM_ROWS][NUM_COLS];
+        for (int i = 0; i<NUM_ROWS; i++) {
+                newBoard[i] = board[i].clone();
+        }
+        return new MyGameState(newBoard, whoseTurn());
     }
 }
