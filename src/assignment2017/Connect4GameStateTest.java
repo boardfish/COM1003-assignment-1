@@ -158,7 +158,6 @@ public void backslashWin() {
         checkMove(backslashWinMsg, gs, 1, 2, YELLOW);
         checkMove(backslashWinMsg, gs, 5, 1, RED);
         checkMove(backslashWinMsg, gs, 1, 3, YELLOW);
-
         assertTrue(backslashWinMsg + "Game not over", gs.gameOver());
         assertEquals(backslashWinMsg + "Winner not yellow", YELLOW, gs.getWinner());
 }
@@ -181,7 +180,6 @@ public void backslashWinUpperRight() {
         checkMove(backslashWinMsg, gs, 4, 3, YELLOW);
         checkMove(backslashWinMsg, gs, 3, 3, RED);
         checkMove(backslashWinMsg, gs, 3, 4, YELLOW);
-
         assertTrue(backslashWinMsg + "Game not over", gs.gameOver());
         assertEquals(backslashWinMsg + "Winner not yellow", YELLOW, gs.getWinner());
 }

@@ -2,6 +2,7 @@ package assignment2017;
 
 public class MyGameState extends Connect4GameState {
 
+<<<<<<< HEAD
 protected int currentTurn = RED;
 protected int[][] board = new int[NUM_ROWS][NUM_COLS];
 protected boolean[] columnsFull = new boolean[NUM_COLS];
@@ -112,6 +113,7 @@ public boolean isColumnFull(int col) throws IllegalColumnException {
         // Vertical check
         current = previous = null;
         for (int col=0; col < NUM_COLS; col++) {
+<<<<<<< HEAD
                 for (int row=0; row <= NUM_ROWS - NUM_IN_A_ROW_TO_WIN; row++) {
                         previous = getCounterAt(col, row);
                         for (int i=row; i<row+4; i++) {
@@ -124,8 +126,22 @@ public boolean isColumnFull(int col) throws IllegalColumnException {
                                 }
                                 previous = current;
                         }
+=======
+            for (int row=0; row <= NUM_ROWS - NUM_IN_A_ROW_TO_WIN; row++) {
+                previous = getCounterAt(col, row);
+                for (int i=row; i<row + NUM_IN_A_ROW_TO_WIN; i++) {
+                    current = getCounterAt(col, i);
+                    if (previous!=current) {
+                        break;
+                    }
+                    if (i == row + 3 && current != EMPTY) { //if it's the last iteration and they're still the same...
+                        return current; //...then that's the winner.
+                    }
+                    previous = current;
+>>>>>>> 1ce3e351a05559597422f90ae15d4e3d76da171f
                 }
         }
+<<<<<<< HEAD
         // Backslash check
         for (int row=0; row < NUM_ROWS; row++) {
                 for (int col=0; col < NUM_COLS - 1 - NUM_IN_A_ROW_TO_WIN; col++) {
@@ -140,8 +156,40 @@ public boolean isColumnFull(int col) throws IllegalColumnException {
                                 }
                                 previous = current;
                         }
+=======
+        // Forward slash check
+        for (int row=0; row < NUM_ROWS - NUM_IN_A_ROW_TO_WIN; row++) {
+            for (int col=0; col < NUM_COLS - NUM_IN_A_ROW_TO_WIN; col++) {
+                previous = getCounterAt(col, row);
+                for (int y=col, x=row; x < row + NUM_IN_A_ROW_TO_WIN || y < col + NUM_IN_A_ROW_TO_WIN; y++, x++) {
+                    current = getCounterAt(y, x);
+                    if (previous!=current) {
+                        break;
+                    }
+                    if (y == col + 3 && current != EMPTY) { //if it's the last iteration and they're still the same...
+                        return current; //...then that's the winner.
+                    }
+                    previous = current;
+                }
+            }
+        }
+     // Backward slash check
+        for (int row=0; row <= NUM_ROWS - NUM_IN_A_ROW_TO_WIN; row++) {
+            for (int col=0; col <= NUM_COLS - NUM_IN_A_ROW_TO_WIN; col++) {
+                previous = getCounterAt(col, row+NUM_IN_A_ROW_TO_WIN - 1);
+                for (int y=col,  x=row + NUM_IN_A_ROW_TO_WIN - 1; x >= row|| y < col + NUM_IN_A_ROW_TO_WIN ; y++, x--) {
+                    current = getCounterAt(y, x);
+                    if (previous!=current) {
+                        break;
+                    }
+                    if (y == col + 3 && current != EMPTY) { //if it's the last iteration and they're still the same...
+                        return current; //...then that's the winner.
+                    }
+                    previous = current;
+>>>>>>> 1ce3e351a05559597422f90ae15d4e3d76da171f
                 }
         }
+
         if (isBoardFull()) {
                 return -1;
         }
@@ -158,6 +206,15 @@ public boolean isColumnFull(int col) throws IllegalColumnException {
 
 @Override public Connect4GameState copy() {
         // TODO Auto-generated method stub
+<<<<<<< HEAD
         return this;
 }
+=======
+        int[][] newBoard = new int[NUM_ROWS][NUM_COLS];
+        for (int i = 0; i<NUM_ROWS; i++) {
+                newBoard[i] = board[i].clone();
+        }
+        return new MyGameState(newBoard, whoseTurn());
+    }
+>>>>>>> 1ce3e351a05559597422f90ae15d4e3d76da171f
 }
