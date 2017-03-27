@@ -32,7 +32,7 @@ public class MyGameState extends Connect4GameState {
         if (isColumnFull(col)) {
             throw new ColumnFullException(col);
         }
-        for (int row=NUM_ROWS-1; row>=0; row--) {
+        for (int row=0; row<NUM_ROWS; row++) {
             if (getCounterAt(col, row) == EMPTY) {
                 board[row][col] = currentTurn;
                 break;
@@ -98,7 +98,6 @@ public class MyGameState extends Connect4GameState {
     @Override
     public int getWinner() {
         // Horizontal check
-        System.out.println("WINNER: ");
         Integer current, previous; //Integer used to allow null
         current = previous = null;
         for (int row=0; row < NUM_ROWS; row++) {
