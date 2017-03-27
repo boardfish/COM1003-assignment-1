@@ -97,30 +97,61 @@ public class MyGameState extends Connect4GameState {
 
     @Override
     public int getWinner() {
-        // Horizontal check
         Integer current, previous; //Integer used to allow null
         current = previous = null;
+        // Horizontal check
         for (int row=0; row < NUM_ROWS; row++) {
-            current = previous = null;
             for (int col=0; col < NUM_COLS - 1 - NUM_IN_A_ROW_TO_WIN; col++) {
-                currentcheck:
+                previous = getCounterAt(col, row);
                 for (int i=col; i<col+4; i++) {
-                    previous = current;
-                    current = getCounterAt(col, row);
+                    current = getCounterAt(i, row);
                     if (previous!=current) {
-                        break currentcheck;
+                        break;
                     }
-                    if (i == col + 3) { //if it's the last iteration and they're still the same...
+                    if (i == col + 3 && current != EMPTY) { //if it's the last iteration and they're still the same...
                         return current; //...then that's the winner.
                     }
+                    previous = current;
                 }
             }
-            return EMPTY;
+        }
+        // Vertical check
+        current = previous = null;
+        for (int col=0; col < NUM_COLS; col++) {
+            for (int row=0; row <= NUM_ROWS - NUM_IN_A_ROW_TO_WIN; row++) {
+                previous = getCounterAt(col, row);
+                for (int i=row; i<row+4; i++) {
+                    current = getCounterAt(col, i);
+                    if (previous!=current) {
+                        break;
+                    }
+                    if (i == row + 3 && current != EMPTY) { //if it's the last iteration and they're still the same...
+                        return current; //...then that's the winner.
+                    }
+                    previous = current;
+                }
+            }
+        }
+        // Backslash check
+        for (int row=0; row < NUM_ROWS; row++) {
+            for (int col=0; col < NUM_COLS - 1 - NUM_IN_A_ROW_TO_WIN; col++) {
+                previous = getCounterAt(col, row);
+                for (int i=col; i<col+4; i++) {
+                    current = getCounterAt(i, row);
+                    if (previous!=current) {
+                        break;
+                    }
+                    if (i == col + 3 && current != EMPTY) { //if it's the last iteration and they're still the same...
+                        return current; //...then that's the winner.
+                    }
+                    previous = current;
+                }
+            }
         }
         if (isBoardFull()) {
             return -1;
         }
-        return -1;
+        return EMPTY;
     }
 
     @Override

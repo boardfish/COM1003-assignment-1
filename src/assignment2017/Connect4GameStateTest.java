@@ -256,14 +256,6 @@ public class Connect4GameStateTest {
 
         try {
             gs.move(col);
-            Connect4ConsoleDisplay display = new Connect4ConsoleDisplay(gs);
-            display.displayBoard();
-            for (int col1 = 0; col1 < NUM_COLS; col1++) {
-            	for (int row1 = 0; row1 < NUM_ROWS; row1++) {
-            		System.out.println(col1 + "   " + row1);
-            		System.out.println(gs.getCounterAt(col1, row1));
-            	}
-            }
             assertEquals(msg + "move made incorrectly - checking ("+col+","+row+")", counter, gs.getCounterAt(col, row));
             assertEquals(msg + "next turn counter not changed correctly", counter == RED ? YELLOW : RED, gs.whoseTurn());
         } catch (ColumnFullException e) {
