@@ -3,39 +3,37 @@ import assignment2017.codeprovided.Connect4GameState;
 import assignment2017.codeprovided.Connect4Player;
 public class Connect4 {
 
-    Connect4GameState gs;
-    Connect4Player r;
-    Connect4Player y;
-    Connect4ConsoleDisplay cdisplay;
-    public Connect4(Connect4GameState gameState, Connect4Player red, Connect4Player yellow, Connect4ConsoleDisplay display) {
+Connect4GameState gS;
+Connect4Player r;
+Connect4Player y;
+Connect4ConsoleDisplay consoleDisplay;
+public Connect4(Connect4GameState gameState, Connect4Player red, Connect4Player yellow, Connect4ConsoleDisplay display) {
         // TODO Auto-generated constructor stub
-        gs = gameState;
+        gS = gameState;
         r = red;
         y = yellow;
-        cdisplay = display;
-    }
+        consoleDisplay = display;
+}
 
-    public void play() {
+public void play() {
         // TODO Auto-generated method stub
         do {
-            cdisplay.displayBoard();
-            r.makeMove(gs);
-            System.out.println(gs.getWinner());
-            cdisplay.displayBoard();
-            y.makeMove(gs);
-            System.out.println(gs.getWinner());
-        } while (!gs.gameOver());
-        cdisplay.displayBoard();
+                consoleDisplay.displayBoard();
+                r.makeMove(gS);
+                consoleDisplay.displayBoard();
+                y.makeMove(gS);
+        } while (!gS.gameOver());
+        consoleDisplay.displayBoard();
         System.out.print("The winner is...");
-        int winner = gs.getWinner();
+        int winner = gS.getWinner();
         if (winner==Connect4GameState.RED) {
-            System.out.println("Red!");
+                System.out.println("Red!");
         }
         if (winner==Connect4GameState.YELLOW) {
-            System.out.println("Yellow!");
+                System.out.println("Yellow!");
         }
         if (winner==Connect4GameState.EMPTY) {
-            System.out.println("well, nobody actually. It's a tie!");
+                System.out.println("well, nobody actually. It's a tie!");
         }
-    }
+}
 }
