@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Toolkit;
 
@@ -36,21 +37,37 @@ public Connect4GraphicalDisplay(Connect4GameState gameState) {
         
         Container contentPane = getContentPane();
         
-        JPanel rowSelectorPanel = new JPanel();
-        rowSelectorPanel.setLayout(new FlowLayout());
+        JPanel rowSelectorPanel = new JPanel(new FlowLayout());
         for (int i=0; i<gS.NUM_COLS; i++) {
         	rowSelectorPanel.add(new JButton(String.valueOf(i)));
         }
         contentPane.setLayout(new BorderLayout());
         //Dropdown - Player 1
         //Dropdown - Player 2
-        contentPane.add(new JButton("Start"), BorderLayout.WEST);
+        String[] playerOptions = { "Player", "CPU (Easy)" };
+
+	    //Create the combo box, select item at index 4.
+	    //Indices start at 0, so 4 specifies the pig.
+	    JComboBox player1Selector = new JComboBox(playerOptions);
+	    JComboBox player2Selector = new JComboBox(playerOptions);
+	    player1Selector.setSelectedIndex(0);
+	    player2Selector.setSelectedIndex(1);
+	    //playerSelector.addActionListener(this);
+	    JPanel gameSetupPanel = new JPanel(new GridLayout(0,1));
+	    gameSetupPanel.add(player1Selector);
+	    gameSetupPanel.add(player2Selector);
+	    gameSetupPanel.add(new JButton("Start"));
         //Text box
-        contentPane.add(new JButton("Exit"), BorderLayout.WEST);
+	    gameSetupPanel.add(new JButton("Exit"));
+	    JPanel killfeedPanel = new JPanel();
+	    JTextArea killfeed = new JTextArea();	    
+	    JScrollPane killfeedScroller = new JScrollPane(killfeed); 
+	    killfeed.setEditable(false);
+	    killfeedPanel.add(killfeed);
         //FlowLayout inside the bottom bit?
-        for (int i=0; i<gS.NUM_COLS; i++) {
-        	contentPane.add(new JButton(String.valueOf(i)));
-        }
+	    contentPane.add(killfeedPanel, BorderLayout.EAST);
+	    contentPane.add(gameSetupPanel, BorderLayout.WEST);
+        contentPane.add(rowSelectorPanel, BorderLayout.SOUTH);
 }
 /* Displays the board.
  * @see assignment2017.codeprovided.Connect4Displayable#displayBoard()

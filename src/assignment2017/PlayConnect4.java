@@ -19,10 +19,12 @@ public static void main(String[] args) {
         String displaySelection;
         if (args.length > 0) {
             displaySelection = args[0];
-            if (displaySelection=="-gui") {
+            if (displaySelection.equals("--gui") || displaySelection.equals("-g")) {
             	game.play(1);
             } else {
-            	System.out.println("Usage: java PlayConnect4 [OPTION...]\n\n  -g, --gui     use Swing graphical user interface\n  -c, --no-gui  use command line display");
+            	System.out.println("Usage: java PlayConnect4 [OPTION...]\n\n"
+            					  +"  -g, --gui     use Swing graphical user interface\n"
+            			          +"  -c, --no-gui  use command line display (default)");
             	System.exit(0);
             }
         } else {

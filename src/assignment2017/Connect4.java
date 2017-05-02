@@ -11,7 +11,7 @@ Connect4Player r;
 Connect4Player y;
 Connect4ConsoleDisplay consoleDisplay;
 Connect4GraphicalDisplay graphicalDisplay;
-ArrayList<Connect4Displayable> inputs;
+ArrayList<Connect4Displayable> inputs = new ArrayList<>();;
 /**
  * @param gameState A given initial gamestate.
  * @param red A Connect4 player to be the first player.
@@ -33,11 +33,13 @@ public Connect4(Connect4GameState gameState, Connect4Player red, Connect4Player 
  */
 public void play(int input) {
         // TODO Auto-generated method stub
+		Connect4Displayable currentDisplay = inputs.get(input);
+		System.out.println(currentDisplay);
         do {
-                inputs.get(input).displayBoard();
+                currentDisplay.displayBoard();
                 r.makeMove(gS);
                 gS.getWinner();
-                consoleDisplay.displayBoard();
+                currentDisplay.displayBoard();
                 y.makeMove(gS);
                 gS.getWinner();
         } while (!gS.gameOver());
@@ -53,5 +55,6 @@ public void play(int input) {
         if (winner==Connect4GameState.EMPTY) {
                 System.out.println("well, nobody actually. It's a tie!");
         }
+        System.exit(0);
 }
 }
