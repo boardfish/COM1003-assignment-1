@@ -6,6 +6,7 @@ import assignment2017.codeprovided.Connect4GameState;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Point;
 import java.awt.Toolkit;
 
@@ -34,6 +35,12 @@ public Connect4GraphicalDisplay(Connect4GameState gameState) {
         setLocation(new Point(screenDimensions.width/4, screenDimensions.height/4));
         
         Container contentPane = getContentPane();
+        
+        JPanel rowSelectorPanel = new JPanel();
+        rowSelectorPanel.setLayout(new FlowLayout());
+        for (int i=0; i<gS.NUM_COLS; i++) {
+        	rowSelectorPanel.add(new JButton(String.valueOf(i)));
+        }
         contentPane.setLayout(new BorderLayout());
         //Dropdown - Player 1
         //Dropdown - Player 2
