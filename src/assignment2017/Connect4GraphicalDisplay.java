@@ -83,7 +83,6 @@ public Connect4GraphicalDisplay(Connect4GameState gameState) {
  */
 @Override
 public void displayBoard() {
-	System.out.println("DisplayBoard has been called!");
 	gameBoardPanel.repaint();
 	
 }
@@ -154,19 +153,15 @@ public void setPlayer(int player) {
 }
 public void paintSquare(Graphics g){
     Color tokenColor;
-    System.out.print(player + ": ");
     switch (player) {
     case 0:
         tokenColor = Color.RED;
-        System.out.println("PAINTING RED");
     break;
     case 1:
         tokenColor = Color.YELLOW;
-        System.out.println("PAINTING YELLOW");
     break;
     default:
         tokenColor = Color.DARK_GRAY;
-        System.out.println("PAINTING GRAY");
     }
     g.setColor(tokenColor);
     g.fillRect(xPos,yPos,width,height);
@@ -202,10 +197,8 @@ public void paintComponent(Graphics g) {
     // Draw Text
     for (int i = 0; i<Connect4GameState.NUM_ROWS; i++) {
         for (int j = 0; j<Connect4GameState.NUM_COLS; j++) {
-        	System.out.print(gS.getCounterAt(j, i) + ": ");
             board[i][j] = new Token(50+(j*(tokenW+(padding*2))), (50+(i*(tokenH+(padding*2)))), tokenW, gS.getCounterAt(j, Connect4GameState.NUM_ROWS-i-1));
-            board[i][j].paintSquare(g); //g
-            System.out.println(board[i][j].player + ".");
+            board[i][j].paintSquare(g);
         }
     }
 }
