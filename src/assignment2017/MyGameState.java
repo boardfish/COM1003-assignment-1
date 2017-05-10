@@ -213,11 +213,22 @@ public boolean isColumnFull(int col) throws IllegalColumnException {
 /* Creates a deep copy of the board state.
  * @see assignment2017.codeprovided.Connect4GameState#copy()
  */
-@Override public Connect4GameState copy() {
+@Override public MyGameState copy() {
         int[][] newBoard = new int[NUM_ROWS][NUM_COLS];
         for (int i = 0; i<NUM_ROWS; i++) {
                 newBoard[i] = board[i].clone();
         }
         return new MyGameState(newBoard, whoseTurn());
     }
+
+	public boolean compareStates(MyGameState gamestate) {
+        for (int i = 0; i<NUM_ROWS; i++) {
+        	for (int j = 0; j<NUM_COLS; j++) {
+                if (!(board[i][j] == gamestate.board[i][j])) {
+                	return false;
+                }	
+        	}
+        }
+        return true;
+	}
 }

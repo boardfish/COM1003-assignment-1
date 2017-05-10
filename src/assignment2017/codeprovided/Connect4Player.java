@@ -1,6 +1,10 @@
 package assignment2017.codeprovided;
 
+import assignment2017.Connect4GraphicalDisplay;
+
 public abstract class Connect4Player {
+
+	public int col;
 
 	/**
 	 * Decides which column in which to move, and then calls move on the gameState instance
@@ -9,4 +13,6 @@ public abstract class Connect4Player {
 	 * @param gameState the current Connect4 game state
 	 */
 	public abstract void makeMove(Connect4GameState gameState);
+
+	public abstract void makeMove(Connect4GameState gS, Connect4GraphicalDisplay currentDisplay);
 }

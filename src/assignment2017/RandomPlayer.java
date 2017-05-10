@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 import assignment2017.codeprovided.ColumnFullException;
+import assignment2017.codeprovided.Connect4Displayable;
 import assignment2017.codeprovided.Connect4GameState;
 import assignment2017.codeprovided.Connect4Player;
 import assignment2017.codeprovided.IllegalColumnException;
@@ -16,6 +17,7 @@ import assignment2017.codeprovided.IllegalColumnException;
 public class RandomPlayer extends Connect4Player {
     
     Scanner cmd = new Scanner(System.in);
+    int col;
 
     public RandomPlayer() {}
 
@@ -27,7 +29,6 @@ public class RandomPlayer extends Connect4Player {
         // TODO Auto-generated method stub
         System.out.print("Random Player chose: ");
         boolean moveExecuted = false;
-        int col;
         do {
             col = ThreadLocalRandom.current().nextInt(0, gameState.NUM_COLS + 1);
             try {
@@ -38,6 +39,21 @@ public class RandomPlayer extends Connect4Player {
             }
         } while (!moveExecuted);
         System.out.println(col);
+    }
+    
+    public void makeMove(Connect4GameState gameState, Connect4GraphicalDisplay graphicalDisplay) {
+        // TODO Auto-generated method stub
+        boolean moveExecuted = false;
+        int col;
+        do {
+            col = ThreadLocalRandom.current().nextInt(0, gameState.NUM_COLS + 1);
+            try {
+                gameState.move(col);
+                moveExecuted = true;
+            } catch (ColumnFullException expected) {
+            } catch (IllegalColumnException expected) {
+            }
+        } while (!moveExecuted);
     }
 
 }
