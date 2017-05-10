@@ -61,8 +61,7 @@ public void play(int input) {
                 }
                 gS.getWinner();
         		}
-        		consoleDisplay.displayBoard();
-        		graphicalDisplay.displayBoard();
+        		currentDisplay.displayBoard();
         		//Killfeed Append
         		graphicalDisplay.killfeed.append("Player ");
                 switch(gS.whoseTurn()) {

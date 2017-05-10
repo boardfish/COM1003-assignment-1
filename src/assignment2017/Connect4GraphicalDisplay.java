@@ -33,8 +33,6 @@ public Toolkit toolkit = Toolkit.getDefaultToolkit();
 public Dimension screenDimensions = toolkit.getScreenSize();
 public Container contentPane = getContentPane();
 public JPanel rowSelectorPanel = new JPanel(new FlowLayout());
-public final String[] playerOptions = { "Player", "CPU (Easy)" };
-public JPanel gameSetupPanel = new JPanel(new GridLayout(0,1));
 public JPanel killfeedPanel = new JPanel(new GridLayout(0,1));
 public JTextArea killfeed = new JTextArea();
 public JScrollPane killfeedScroller = new JScrollPane(killfeed);
@@ -61,19 +59,10 @@ public Connect4GraphicalDisplay(Connect4GameState gameState) {
         rowSelectorPanel.add(rowSelectorPanelButtons[i]);
     }
     contentPane.setLayout(new BorderLayout());
-    JComboBox player1Selector = new JComboBox(playerOptions);
-    JComboBox player2Selector = new JComboBox(playerOptions);
-    player1Selector.setSelectedIndex(0);
-    player2Selector.setSelectedIndex(1);
-    //playerSelector.addActionListener(this);
-    gameSetupPanel.add(player1Selector);
-    gameSetupPanel.add(player2Selector);
-    gameSetupPanel.add(new JButton("Start"));
-    gameSetupPanel.add(new JButton("Exit"));
+
     killfeed.setEditable(false);
     killfeedPanel.add(killfeedScroller);
     contentPane.add(killfeedPanel, BorderLayout.EAST);
-    contentPane.add(gameSetupPanel, BorderLayout.WEST);
     contentPane.add(rowSelectorPanel, BorderLayout.SOUTH);
     contentPane.add(gameBoardPanel, BorderLayout.CENTER);
     this.setVisible(true);
