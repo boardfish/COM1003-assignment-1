@@ -8,14 +8,28 @@ import assignment2017.codeprovided.Connect4Player;
  *
  */
 public class PlayConnect4 {
+	
+		static Connect4Player red;
+		static Connect4Player yellow;
+	
+public PlayConnect4(Connect4Player[] playerslot) {
+			red = playerslot[0];
+			yellow = playerslot[1];
+		}
+
 public static void main(String[] args) {
         MyGameState gameState = new MyGameState();
         gameState.startGame();
-        Connect4Player red = new RandomPlayer();
-        Connect4Player yellow = new KeyboardPlayer();
         Connect4ConsoleDisplay display = new Connect4ConsoleDisplay(gameState);
-        System.out.println("Line 18:");
         Connect4GraphicalDisplay display2 = new Connect4GraphicalDisplay(gameState);
+        System.out.println(red);
+        System.out.println(yellow);
+        if (red==null) {
+        	red = new KeyboardPlayer();
+        }
+        if (yellow==null) {
+        	yellow = new RandomPlayer();
+        }
         Connect4 game = new Connect4(gameState, red, yellow, display, display2);
         String displaySelection;
         if (args.length > 0) {

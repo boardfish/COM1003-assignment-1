@@ -45,9 +45,8 @@ public void play(int input) {
         // TODO Auto-generated method stub
 		Connect4Displayable currentDisplay = inputs.get(input);
 		System.out.println(currentDisplay);
-		String[] args = {};
 		if (currentDisplay instanceof Connect4GraphicalDisplay) {
-			graphicalDisplay.main(args);
+			graphicalDisplay.setVisible(true);
 		}
 		
         do {

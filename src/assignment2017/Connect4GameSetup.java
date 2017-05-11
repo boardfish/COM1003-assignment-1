@@ -48,6 +48,9 @@ public class Connect4GameSetup extends JFrame {
 	    		}
 	    		System.out.println(playerslot[0]);
 	    		System.out.println(playerslot[1]);
+	    		PlayConnect4 game = new PlayConnect4(playerslot);
+	    		String[] gameArgs = {"-g"};
+	    		game.main(gameArgs);
 	    	}
 	    });
 		buttonExit.addActionListener(new ActionListener() {

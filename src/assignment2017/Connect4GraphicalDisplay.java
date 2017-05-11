@@ -65,7 +65,6 @@ public Connect4GraphicalDisplay(Connect4GameState gameState) {
     contentPane.add(killfeedPanel, BorderLayout.EAST);
     contentPane.add(rowSelectorPanel, BorderLayout.SOUTH);
     contentPane.add(gameBoardPanel, BorderLayout.CENTER);
-    this.setVisible(true);
 }
 /* Displays the board.
  * @see assignment2017.codeprovided.Connect4Displayable#displayBoard()

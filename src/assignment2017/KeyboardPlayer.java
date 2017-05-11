@@ -31,6 +31,7 @@ public void actionPerformed(ActionEvent e) {
 
 public void makeMove(Connect4GameState gameState) {
         boolean moveExecuted = false;
+        System.out.print("Choose a column [0-6]: ");
         int col = cmd.nextInt();
         do {
                 try {
