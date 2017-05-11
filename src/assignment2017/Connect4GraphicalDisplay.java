@@ -44,7 +44,6 @@ public GameBoardGUI gameBoardPanel = new GameBoardGUI();
 public Connect4GraphicalDisplay(Connect4GameState gameState) {
     // TODO Auto-generated constructor stub
     gS = gameState;
-    System.out.println("GAMESTATE: " + gS);
     setTitle("Connect 4");
     setSize(600, 600);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,6 +64,7 @@ public Connect4GraphicalDisplay(Connect4GameState gameState) {
     contentPane.add(killfeedPanel, BorderLayout.EAST);
     contentPane.add(rowSelectorPanel, BorderLayout.SOUTH);
     contentPane.add(gameBoardPanel, BorderLayout.CENTER);
+    pack();
 }
 /* Displays the board.
  * @see assignment2017.codeprovided.Connect4Displayable#displayBoard()

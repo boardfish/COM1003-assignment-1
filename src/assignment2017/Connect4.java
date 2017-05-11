@@ -30,9 +30,6 @@ public Connect4(MyGameState gameState, Connect4Player red, Connect4Player yellow
         graphicalDisplay = display2;
         inputs.add(consoleDisplay);
         inputs.add(graphicalDisplay);
-        System.out.println(r);
-        System.out.println(red);
-        System.out.println(players);
         players[0] = r;
         players[1] = y;
         player = r;
@@ -44,8 +41,8 @@ public Connect4(MyGameState gameState, Connect4Player red, Connect4Player yellow
 public void play(int input) {
         // TODO Auto-generated method stub
 		Connect4Displayable currentDisplay = inputs.get(input);
-		System.out.println(currentDisplay);
 		if (currentDisplay instanceof Connect4GraphicalDisplay) {
+			graphicalDisplay.pack();
 			graphicalDisplay.setVisible(true);
 		}
 		

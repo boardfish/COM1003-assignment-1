@@ -22,8 +22,6 @@ public static void main(String[] args) {
         gameState.startGame();
         Connect4ConsoleDisplay display = new Connect4ConsoleDisplay(gameState);
         Connect4GraphicalDisplay display2 = new Connect4GraphicalDisplay(gameState);
-        System.out.println(red);
-        System.out.println(yellow);
         if (red==null) {
         	red = new KeyboardPlayer();
         }

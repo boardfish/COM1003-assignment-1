@@ -48,7 +48,6 @@ public void makeMove(Connect4GameState gameState) {
 public void makeMove(Connect4GameState gameState, Connect4GraphicalDisplay graphicalDisplay) {
     if (moveExecuted) {
             try {
-            		System.out.println("col:" + col);
                     gameState.move(col);
                     moveExecuted = true;
             } catch (ColumnFullException cfe) {
