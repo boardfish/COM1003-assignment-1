@@ -45,7 +45,9 @@ public void play(int input) {
 			graphicalDisplay.pack();
 			graphicalDisplay.setVisible(true);
 		}
-		
+		System.out.println("CONNECT4 PLAYERS");
+		System.out.println(players[0]);
+		System.out.println(players[1]);
         do {
         		MyGameState previousState = gS.copy();
         		player = players[gS.whoseTurn()];

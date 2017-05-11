@@ -1,4 +1,7 @@
 package assignment2017;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import assignment2017.codeprovided.Connect4GameState;
 import assignment2017.codeprovided.Connect4Player;
 
@@ -29,6 +32,31 @@ public static void main(String[] args) {
         	yellow = new RandomPlayer();
         }
         Connect4 game = new Connect4(gameState, red, yellow, display, display2);
+        display2.buttonStart.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		int[] playerselection = new int[2];
+        		Connect4Player[] playerslot = new Connect4Player[2];
+        		playerselection[0] = display2.selectorPlayer1.getSelectedIndex();
+        		playerselection[1] = display2.selectorPlayer2.getSelectedIndex();
+        		for (int i = 0; i<playerselection.length; i++) {
+        			switch (playerselection[i]) {
+        			case 1:
+        				playerslot[i] = new RandomPlayer();
+        				break;
+        			default:
+        				playerslot[i] = new KeyboardPlayer();
+        				break;
+        			}
+        		}
+        		red = playerslot[0];
+        		yellow = playerslot[1];
+        		gameState.startGame();
+        		display2.dispose();
+        		Connect4GraphicalDisplay display2 = new Connect4GraphicalDisplay(gameState);
+        		Connect4 game = new Connect4(gameState, red, yellow, display, display2);
+        		game.play(1);
+        	}
+        });
         String displaySelection;
         if (args.length > 0) {
             displaySelection = args[0];

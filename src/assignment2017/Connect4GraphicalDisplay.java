@@ -3,6 +3,7 @@ package assignment2017;
 import assignment2017.codeprovided.ColumnFullException;
 import assignment2017.codeprovided.Connect4Displayable;
 import assignment2017.codeprovided.Connect4GameState;
+import assignment2017.codeprovided.Connect4Player;
 import assignment2017.codeprovided.IllegalColumnException;
 
 import java.awt.BorderLayout;
@@ -17,8 +18,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
 import java.awt.Color;
 
 import javax.swing.*;
@@ -33,9 +32,18 @@ public Toolkit toolkit = Toolkit.getDefaultToolkit();
 public Dimension screenDimensions = toolkit.getScreenSize();
 public Container contentPane = getContentPane();
 public JPanel rowSelectorPanel = new JPanel(new FlowLayout());
+
 public JPanel killfeedPanel = new JPanel(new GridLayout(0,1));
 public JTextArea killfeed = new JTextArea();
 public JScrollPane killfeedScroller = new JScrollPane(killfeed);
+
+public final String[] playerOptions = { "Player", "CPU (Easy)" };
+public JPanel gameSetupPanel = new JPanel(new GridLayout(0,1));
+JComboBox selectorPlayer1 = new JComboBox(playerOptions);
+JComboBox selectorPlayer2 = new JComboBox(playerOptions);
+JButton buttonStart = new JButton("Start");
+JButton buttonExit = new JButton("Exit");    
+
 public GameBoardGUI gameBoardPanel = new GameBoardGUI();
 
 /**
@@ -61,9 +69,19 @@ public Connect4GraphicalDisplay(Connect4GameState gameState) {
 
     killfeed.setEditable(false);
     killfeedPanel.add(killfeedScroller);
+    gameSetupPanel.add(selectorPlayer1);
+    gameSetupPanel.add(selectorPlayer2);
+    gameSetupPanel.add(buttonStart);
+    buttonExit.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+    		System.exit(0);
+    	}
+    });
+    gameSetupPanel.add(buttonExit);
     contentPane.add(killfeedPanel, BorderLayout.EAST);
     contentPane.add(rowSelectorPanel, BorderLayout.SOUTH);
     contentPane.add(gameBoardPanel, BorderLayout.CENTER);
+    contentPane.add(gameSetupPanel, BorderLayout.WEST);
     pack();
 }
 /* Displays the board.
