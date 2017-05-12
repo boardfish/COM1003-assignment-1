@@ -45,9 +45,6 @@ public void play(int input) {
 			graphicalDisplay.pack();
 			graphicalDisplay.setVisible(true);
 		}
-		System.out.println("CONNECT4 PLAYERS");
-		System.out.println(players[0]);
-		System.out.println(players[1]);
         do {
         		MyGameState previousState = gS.copy();
         		player = players[gS.whoseTurn()];
@@ -93,6 +90,16 @@ public void actionPerformed(ActionEvent e) {
     if (players[gS.whoseTurn()] instanceof KeyboardPlayer) {
     	turns[gS.whoseTurn()] = true;
     }
+}
+
+public void setRed(Connect4Player p) {
+	r = p;
+	players[0] = r;
+}
+
+public void setYellow(Connect4Player p) {
+	y = p;
+	players[1] = y;
 }
 
 }

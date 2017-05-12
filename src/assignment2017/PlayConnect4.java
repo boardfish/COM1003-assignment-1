@@ -48,13 +48,10 @@ public static void main(String[] args) {
         				break;
         			}
         		}
-        		red = playerslot[0];
-        		yellow = playerslot[1];
+        		game.setRed(playerslot[0]);
+        		game.setYellow(playerslot[1]);
         		gameState.startGame();
-        		display2.dispose();
-        		Connect4GraphicalDisplay display2 = new Connect4GraphicalDisplay(gameState);
-        		Connect4 game = new Connect4(gameState, red, yellow, display, display2);
-        		game.play(1);
+        		display2.repaint();
         	}
         });
         String displaySelection;
