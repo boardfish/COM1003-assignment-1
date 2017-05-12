@@ -42,7 +42,7 @@ public JPanel gameSetupPanel = new JPanel(new GridLayout(0,1));
 JComboBox selectorPlayer1 = new JComboBox(playerOptions);
 JComboBox selectorPlayer2 = new JComboBox(playerOptions);
 JButton buttonStart = new JButton("Start");
-JButton buttonExit = new JButton("Exit");    
+JButton buttonExit = new JButton("Exit");
 
 public GameBoardGUI gameBoardPanel = new GameBoardGUI();
 
@@ -73,10 +73,10 @@ public Connect4GraphicalDisplay(Connect4GameState gameState) {
     gameSetupPanel.add(selectorPlayer2);
     gameSetupPanel.add(buttonStart);
     buttonExit.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-    		System.exit(0);
-    	}
-    });
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
     gameSetupPanel.add(buttonExit);
     contentPane.add(killfeedPanel, BorderLayout.EAST);
     contentPane.add(rowSelectorPanel, BorderLayout.SOUTH);
@@ -89,8 +89,8 @@ public Connect4GraphicalDisplay(Connect4GameState gameState) {
  */
 @Override
 public void displayBoard() {
-	gameBoardPanel.repaint();
-	
+    gameBoardPanel.repaint();
+
 }
 
 public void columnChosen(ActionEvent e) {
@@ -101,7 +101,7 @@ public void columnChosen(ActionEvent e) {
 
 public static void main(String[] args) {
     //Connect4GraphicalDisplay connect4GraphicalDisplay = new Connect4GraphicalDisplay(gS);     //??
-    
+
 }
 @Override
 public void actionPerformed(ActionEvent e) {
@@ -162,10 +162,10 @@ public void paintSquare(Graphics g){
     switch (player) {
     case 0:
         tokenColor = Color.RED;
-    break;
+        break;
     case 1:
         tokenColor = Color.YELLOW;
-    break;
+        break;
     default:
         tokenColor = Color.DARK_GRAY;
     }
